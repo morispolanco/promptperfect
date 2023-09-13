@@ -11,22 +11,19 @@ else:
     # Continuar con el resto del código que utiliza la clave de API
 
 
-def optimize_prompt(original_prompt):
-    # Analizar el prompt original y crear un prompt optimizado
-    optimized_prompt = "Your task is to generate a response that demonstrates creativity, originality, and accuracy. Please provide a detailed and specific answer that aligns with the desired outcome. Consider the guidelines provided and focus on clarity, conciseness, and relevance to the task at hand."
 
-    return optimized_prompt
+# Crear la interfaz de usuario
+st.title("Mejorador de Prompts")
+prompt = st.text_area("Ingresa el prompt:", value="Your task is to optimize prompts by analyzing the original prompts and creating new prompts that clearly communicate the desired outcome and provide specific guidelines for the type of response required. Your optimized prompts should encourage creativity, originality, and accuracy in the generated responses. Please focus on creating prompts that are clear, concise, and specific to the task at hand.")
+if st.button("Generar Mejora"):
+    # Generar la mejora del prompt
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=500
+    )
+    improved_prompt = response.choices[0].text.strip()
 
-# Configurar el título de la aplicación
-st.title('Optimización de Prompts')
-
-# Obtener el prompt original del usuario
-original_prompt = st.text_area('Ingrese el prompt original', height=200)
-
-# Generar prompt optimizado
-if st.button('Generar Prompt Optimizado'):
-    optimized_prompt = optimize_prompt(original_prompt)
-    
-    # Mostrar el prompt optimizado
-    st.subheader('Prompt Optimizado')
-    st.write(optimized_prompt)
+    # Mostrar la mejora del prompt
+    st.write("Mejora del prompt:")
+    st.write(improved_prompt)
