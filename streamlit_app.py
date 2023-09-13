@@ -33,4 +33,17 @@ def assistant():
         st.session_state.messages.append(msg)
         st.chat_message("assistant").write(msg.content)
 
+    if st.button("Generate Optimized Prompt"):
+        optimized_prompt = generate_optimized_prompt(prompt)
+        st.session_state.messages.append({"role": "user", "content": optimized_prompt})
+        response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+        msg = response.choices[0].message
+        st.session_state.messages.append(msg)
+        st.chat_message("assistant").write(msg.content)
+
+def generate_optimized_prompt(prompt):
+    # Aquí puedes agregar tu lógica para generar el prompt optimizado
+    optimized_prompt = prompt + " [Optimized]"
+    return optimized_prompt
+
 assistant()
