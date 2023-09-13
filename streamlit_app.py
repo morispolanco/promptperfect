@@ -10,24 +10,23 @@ else:
     openai.api_key = api_key
     # Continuar con el resto del código que utiliza la clave de API
 
+
+def optimize_prompt(original_prompt):
+    # Analizar el prompt original y crear un prompt optimizado
+    optimized_prompt = "Your task is to generate a response that demonstrates creativity, originality, and accuracy. Please provide a detailed and specific answer that aligns with the desired outcome. Consider the guidelines provided and focus on clarity, conciseness, and relevance to the task at hand."
+
+    return optimized_prompt
+
 # Configurar el título de la aplicación
-st.title('Optimización de Prompt')
+st.title('Optimización de Prompts')
 
-# Obtener el prompt del usuario
-prompt = st.text_area('Ingrese el prompt que desea optimizar', height=200)
+# Obtener el prompt original del usuario
+original_prompt = st.text_area('Ingrese el prompt original', height=200)
 
-# Generar texto optimizado utilizando OpenAI GPT-3
-if st.button('Generar Optimización'):
-    # Llamar a la API de OpenAI para generar texto optimizado
-    response = openai.Completion.create(
-        engine='text-davinci-003',
-        prompt=prompt,
-        max_tokens=500,
-        n=1,
-        stop=None,
-        temperature=0.7
-    )
+# Generar prompt optimizado
+if st.button('Generar Prompt Optimizado'):
+    optimized_prompt = optimize_prompt(original_prompt)
     
-    # Mostrar el texto optimizado generado por OpenAI GPT-3
-    st.subheader('Texto Optimizado')
-    st.write(response.choices[0].text.strip())
+    # Mostrar el prompt optimizado
+    st.subheader('Prompt Optimizado')
+    st.write(optimized_prompt)
