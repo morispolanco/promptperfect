@@ -20,13 +20,21 @@ def optimize_prompt(original_prompt):
 # Configurar el título de la aplicación
 st.title('Optimización de Prompts')
 
-# Obtener el prompt original del usuario
-original_prompt = st.text_area('Ingrese el prompt original', height=200)
+# Obtener el prompt del usuario
+prompt = st.text_area('Ingrese el prompt que desea optimizar', height=200)
 
-# Generar prompt optimizado
+# Generar prompt optimizado utilizando OpenAI GPT-3
 if st.button('Generar Prompt Optimizado'):
-    optimized_prompt = optimize_prompt(original_prompt)
+    # Llamar a la API de OpenAI para generar el prompt optimizado
+    response = openai.Completion.create(
+        engine='text-davinci-003',
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.7
+    )
     
-    # Mostrar el prompt optimizado
+    # Mostrar el prompt optimizado generado por OpenAI GPT-3
     st.subheader('Prompt Optimizado')
-    st.write(optimized_prompt)
+    st.write(response.choices[0].text.strip())
