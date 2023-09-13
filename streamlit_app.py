@@ -1,4 +1,4 @@
-import streamlit as st
+    import streamlit as st
 import openai
 
 # Configurar la clave de la API de OpenAI
@@ -22,7 +22,7 @@ if st.button('Generar Optimización'):
     response = openai.Completion.create(
         engine='text-davinci-003',
         prompt=prompt,
-        max_tokens=100,
+        max_tokens=500,
         n=1,
         stop=None,
         temperature=0.7
