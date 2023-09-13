@@ -19,8 +19,8 @@ def assistant():
 
     openai.api_key = openai_api_key
 
-    prompt = "Your task is to optimize prompts by analyzing the original prompts and creating new prompts that clearly communicate the desired outcome and provide specific guidelines for the type of response required. Your optimized prompts should encourage creativity, originality, and accuracy in the generated responses. Please focus on creating prompts that are clear, concise, and specific to the task at hand."
-
+    prompt = "Su tarea consiste en optimizar las instrucciones analizando las originales y creando otras nuevas que comuniquen claramente el resultado deseado y proporcionen directrices específicas para el tipo de respuesta requerida. Las instrucciones optimizadas deben fomentar la creatividad, la originalidad y la precisión en las respuestas generadas. Concéntrese en crear instrucciones claras, concisas y específicas para la tarea en cuestión." 
+    
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
 
