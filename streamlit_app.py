@@ -32,3 +32,5 @@ def assistant():
         msg = response.choices[0].message
         st.session_state.messages.append(msg)
         st.chat_message("assistant").write(msg.content)
+
+assistant()
