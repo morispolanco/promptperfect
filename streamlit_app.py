@@ -1,4 +1,4 @@
-    import streamlit as st
+import streamlit as st
 import openai
 
 # Configurar la clave de la API de OpenAI
