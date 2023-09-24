@@ -20,7 +20,7 @@ def assistant():
     prompt = "Su tarea consiste en optimizar las instrucciones analizando las originales y creando otras nuevas que comuniquen claramente el resultado deseado y proporcionen directrices específicas para el tipo de respuesta requerida. Las instrucciones optimizadas deben fomentar la creatividad, la originalidad y la precisión en las respuestas generadas. Concéntrese en crear instrucciones claras, concisas y específicas para la tarea en cuestión." 
     
     if prompt:
-        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.session_state.messages.append({"role": "assistant", "content": prompt})
 
     user_input = st.text_input("User Input")
 
@@ -33,7 +33,7 @@ def assistant():
 
     if st.button("Generate Optimized Prompt"):
         optimized_prompt = generate_optimized_prompt(prompt)
-        st.session_state.messages.append({"role": "user", "content": optimized_prompt})
+        st.session_state.messages.append({"role": "assistant", "content": optimized_prompt})
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
         msg = response.choices[0].message
         st.session_state.messages.append(msg)
